@@ -4,5 +4,7 @@ namespace NugetWithGitVersion
 {
     public class Class1
     {
+
+		
     }
 }
