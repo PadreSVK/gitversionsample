@@ -12,18 +12,6 @@
     </PackageReference>
   </ItemGroup>
 
-  <!-- <Target Name="DecorateVersionsWithGitSha" AfterTargets="GetVersion">
-    <Message Importance="high" Text="GitVersion_PreReleaseNumber = $(GitVersion_PreReleaseNumber)" />
-    <Message Importance="high" Text="GitVersion_WeightedPreReleaseNumber = $(GitVersion_WeightedPreReleaseNumber)" />
-    <Message Importance="high" Text="GitVersion_BuildMetaData = $(GitVersion_BuildMetaData)" />
-    <Message Importance="high" Text="Version = $(Version)" />
-    <Message Importance="high" Text="PackageVersion = $(PackageVersion)" />
-    <Message Importance="high" Text="VersionSuffix = $(VersionSuffix)" />
-    <PropertyGroup Condition="'$(GitVersion_BranchName)' != '$(StableVersionBranch)'">
-      <PackageVersion>$(GitVersion_MajorMinorPatch)-$(GitVersion_PreReleaseLabel).$(GitVersion_BuildMetaData)</PackageVersion>
-    </PropertyGroup>
-  </Target> -->
-
   <Target Name="ChangeSuffixVersionForPrereleaseBranchesTo" AfterTargets="GetVersion">
     <PropertyGroup Condition="'$(GitVersion_BranchName)' != '$(StableVersionBranch)'">
       <PackageVersion>$(GitVersion_MajorMinorPatch)-$(GitVersion_PreReleaseLabel).$(GitVersion_BuildMetaData)</PackageVersion>
