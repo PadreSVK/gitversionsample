@@ -12,46 +12,22 @@
     </PackageReference>
   </ItemGroup>
 
-  <Target Name="DecorateVersionsWithGitSha" AfterTargets="GetVersion">
-    <Message Importance="high" Text="GitVersion_BuildMetaDataPadded = $(GitVersion_BuildMetaDataPadded)" />
-    <Message Importance="high" Text="GitVersion_FullBuildMetaData = $(GitVersion_FullBuildMetaData)" />
-    <Message Importance="high" Text="GitVersion_FullSemVer = $(GitVersion_FullSemVer)" />
-    <Message Importance="high" Text="GitVersion_CommitsSinceVersionSourcePadded = $(GitVersion_CommitsSinceVersionSourcePadded)" />
-    <Message Importance="high" Text="GitVersion_MajorMinorPatch = $(GitVersion_MajorMinorPatch)" />
-    <Message Importance="high" Text="GitVersion_PreReleaseLabel = $(GitVersion_PreReleaseLabel)" />
-    <Message Importance="high" Text="GitVersion_PreReleaseNumber = $(GitVersion_PreReleaseNumber)" />
-    <Message Importance="high" Text="GitVersion_BranchName = $(GitVersion_BranchName)" />
-    <Message Importance="high" Text="GitVersion_NuGetVersion = $(GitVersion_NuGetVersion)" />
-    <Message Importance="high" Text="GitVersion_NuGetVersion2 = $(GitVersion_NuGetVersion2)" />
+  <!-- <Target Name="DecorateVersionsWithGitSha" AfterTargets="GetVersion">
     <Message Importance="high" Text="GitVersion_PreReleaseNumber = $(GitVersion_PreReleaseNumber)" />
     <Message Importance="high" Text="GitVersion_WeightedPreReleaseNumber = $(GitVersion_WeightedPreReleaseNumber)" />
     <Message Importance="high" Text="GitVersion_BuildMetaData = $(GitVersion_BuildMetaData)" />
     <Message Importance="high" Text="Version = $(Version)" />
     <Message Importance="high" Text="PackageVersion = $(PackageVersion)" />
     <Message Importance="high" Text="VersionSuffix = $(VersionSuffix)" />
-    <!-- <PropertyGroup>
-
-      <GitVersion_PreReleaseNumber>$(GitVersion_BuildMetaDataPadded)</GitVersion_PreReleaseNumber>
-      <PackageVersion>$(GitVersion_FullSemVer)</PackageVersion>
-      <PackageVersion>1.4.3-asdasd.1+5</PackageVersion>
-    </PropertyGroup> -->
-
     <PropertyGroup Condition="'$(GitVersion_BranchName)' != '$(StableVersionBranch)'">
-    
-
       <PackageVersion>$(GitVersion_MajorMinorPatch)-$(GitVersion_PreReleaseLabel).$(GitVersion_BuildMetaData)</PackageVersion>
-<!-- 
-      <Version>$(GitVersion_MajorMinorPatch)-$(GitVersion_PreReleaseLabel).$(GitVersion_BuildMetaDataPadded)</Version>
-      <Version>$(GitVersion_MajorMinorPatch)-$(GitVersion_PreReleaseLabel).$(GitVersion_BuildMetaDataPadded)</Version>
-      <PackageVersion>$(GitVersion_MajorMinorPatch)-$(GitVersion_PreReleaseLabel).$(GitVersion_BuildMetaDataPadded)</PackageVersion>
-      <VersionSuffix>$(GitVersion_PreReleaseLabel).$(GitVersion_BuildMetaDataPadded)</VersionSuffix> -->
-
     </PropertyGroup>
-    <Message Importance="high" Text="GitVersion_NuGetVersion = $(GitVersion_NuGetVersion)" />
-    <Message Importance="high" Text="Version = $(Version)" />
-    <Message Importance="high" Text="PackageVersion = $(PackageVersion)" />
+  </Target> -->
 
-
+  <Target Name="ChangeSuffixVersionForPrereleaseBranchesTo" AfterTargets="GetVersion">
+    <PropertyGroup Condition="'$(GitVersion_BranchName)' != '$(StableVersionBranch)'">
+      <PackageVersion>$(GitVersion_MajorMinorPatch)-$(GitVersion_PreReleaseLabel).$(GitVersion_BuildMetaData)</PackageVersion>
+    </PropertyGroup>
   </Target>
 
 </Project>
